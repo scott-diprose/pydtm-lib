@@ -30,6 +30,11 @@
             "command": "validate-pyproject pyproject.toml",
         },
         {
+            "label": "List Development Environment Outdated",
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && python -m pip list -o",
+        },
+        {
             "label": "Upgrade Development Environment",
             "type": "shell",
             "command": ".venv\\Scripts\\activate.bat && python -m pip install --upgrade --require-virtualenv --editable .[dev] && python -m pip freeze > requirements.dev.txt",

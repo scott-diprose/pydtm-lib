@@ -1,0 +1,3 @@
+py -3.12 -m venv --clear --upgrade-deps .venv
+source .venv/bin/activate
+python -m pip install --upgrade --require-virtualenv -r requirements.dev.txt

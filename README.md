@@ -23,10 +23,33 @@ print(metadata.name)
 
 Current release has been tested on Python 3.10.4
 
-```shell
-setup.dev.cmd
+```powershell
+./setup.dev.ps1
 ```
 
 Tasks are configured for the Visual Studio Code editor.
 
 Ideas and constructive criticism welcome: https://github.com/scott-diprose/pydtm-lib/discussions
+
+---
+
+Get Data. Process driven by metadata:
+
+- SQL column defs
+- API & JSON Path
+
+>> extract data lineage & document downstream datasets
+>> surface as web app, and integrate with subject area documentation
+>> integrate with reporting tooltips, etc
+
+---
+
+DLM (Data Linage Metadata)
+A standard metadata library.
+
+WASM & PYPi pkg
+
+1. generation and extract utils
+2. object serialisation (load/unload)
+3. schemas and validation
+4. protocol matching (identify the intended schema of a loaded json document)

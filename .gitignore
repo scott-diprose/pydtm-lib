@@ -1,3 +1,5 @@
+.local
+
 # Pipfile for Dev environment only, so don't lock versions
 Pipfile.lock
 

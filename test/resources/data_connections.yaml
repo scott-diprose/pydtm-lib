@@ -7,6 +7,10 @@ metadata:
     description: Persistant Staging Area for the Data Vault / Enterprise Data Warehouse.
 database:
     sql_dialect: mssql
+# data:
+#     type: database
+#     database:
+#         sql_dialect: mssql
 connection:
     type: odbc
     odbc:
@@ -36,6 +40,10 @@ metadata:
     description: File landing area for user managed data associated with the Avaya - Call Management System.
 data_files:
     expected_file_format: xlsx
+# data:
+#     type: data_files
+#     data_files:
+#         expected_file_format: xlsx
 connection:
     type: local_directory
     local_directory:
@@ -141,7 +149,7 @@ kind: data_connection
 metadata:
     name: MSTR_Metadata_UAT
     type: database
-    description: 'Actually just the name of the sever. Not the source system.'
+    description: ''
 database:
     sql_dialect: mssql
 connection:
@@ -155,7 +163,7 @@ kind: data_connection
 metadata:
     name: MSTR_Metadata_PRD
     type: database
-    description: 'Actually just the name of the sever. Not the source system.'
+    description: ''
 database:
     sql_dialect: mssql
 connection:

@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "njpwerner.autodocstring",
+        "ms-python.debugpy",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "davidanson.vscode-markdownlint",
+        "hediet.debug-visualizer",
+        "mikoz.black-py",
+        "petli-full.json-to-yaml-and-more",
+        "nidu.copy-json-path",
+        "tamasfe.even-better-toml",
+        "me-dutour-mathieu.vscode-github-actions",
+        "dagra.jsonschemautils",
+        "davidmarek.jsonpath-extract",
+        "ms-python.mypy-type-checker",
+        "njqdev.vscode-python-typehint",
+        "dotjoshjohnson.xml",
+        "redhat.vscode-yaml"
+    ]
+}

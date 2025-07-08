@@ -1,16 +1,9 @@
 # https://packaging.python.org/en/latest/specifications/#
-# https://peps.python.org/pep-0621/
-# https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/
-# https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
-
-# REM (not in venv shell): validate-pyproject pyproject.toml
-
 [project]
-# metadata-version = "2.3"
 name = "pydtm-lib"
 version = "0.0.4"
+# metadata-version = "v0.beta2"
 license = {text = "MIT"}
-# summary = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 description = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 keywords = ["data pipelines", "data", "pipelines", "metadata"]
 # https://pypi.org/classifiers/
@@ -24,7 +17,6 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
 ]
 readme = "README.md"
-# home-page = "https://github.com/scott-diprose/pydtm-lib"
 
 requires-python = ">=3.10"
 dependencies = [
@@ -36,50 +28,53 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "safety",
-    "pylint",
-    "yapf",
+    "ruff",
     "pytest",
     "pytest-cov",
     "build",
     "twine"
 ]
 
-# [project.scripts]
-# pydtm_migrate = "pydtm.util.upgrade:migrate_version"
+[project.urls]
+home-page = "https://github.com/scott-diprose/pydtm-lib"
 
+[project.scripts]
+pydtm_migrate_latest = "pydtm.utils:migrate_mapping"
 
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
     "setuptools >= 58.0",
     "wheel",
-    # "setuptools-scm>=6.2",
 ]
 
 # # https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
-
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["pydtm*"]
+# include = ["pydtm*"]
 # include = ["pydtm", "pydtm.models", "pydtm.plugins*"]
 
+[tool.ruff]
+line-length = 88
 
-[tool.pylint.MASTER]
-# init-hook = "import sys; import os; sys.path.append('src')"
-[tool.pylint.STRING]
-check-quote-consistency = "yes"
-[tool.pylint.'MESSAGES CONTROL']
-max-line-length = 88
-disable = [
-    "missing-module-docstring",
-    "no-member",
-    # "too-few-public-methods",
-]
+# # [tool.pylint.MASTER]
+# # init-hook = "import sys; import os; sys.path.append('src')"
+# [tool.pylint.STRING]
+# check-quote-consistency = "yes"
+# [tool.pylint.'MESSAGES CONTROL']
+# max-line-length = 88
+# disable = [
+#     "missing-module-docstring",
+#     "no-member",
+#     # "too-few-public-methods",
+# ]
 
-[tool.yapf]
-column_limit = 88
+# [tool.yapf]
+# column_limit = 88
 
 [tool.pytest.ini_options]
-
+testpaths = [
+    "tests",
+]
 [tool.coverage.run]
 source = ["src"]

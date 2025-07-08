@@ -1,0 +1,12 @@
+select {% for item_mapping in mapping.data_items
+            if (item_mapping.source.type == 'column'
+                or item_mapping.source.type == 'sql') -%}
+    {{ '' if loop.first else '    , ' -}}
+    {{ '['  + item_mapping.source.column + ']'
+        if item_mapping.source.type == 'column'
+        else item_mapping.source[item_mapping.source.type]
+    }} as [{{ item_mapping.target.column }}]
+{% endfor %}from {{ mapping.source.db_object.schema }}.{{ mapping.source.db_object.name }}
+{% if mapping.source.db_object.predicates is defined and mapping.source.db_object.predicates|length -%}
+    where {{ mapping.source.db_object.predicates -}}
+{% endif %};

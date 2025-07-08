@@ -1,0 +1,103 @@
+---
+api_version: v0.beta2
+kind: mapping
+metadata:
+    name: jacobi_FundBenchmarks
+    description: ""
+    enabled: true
+source:
+    data_conection:
+        name: Morningstar-Funds
+    type: api
+    api:
+        end_point: FundBenchmarks/{identifier_type}/{identifier}?accesscode={access_code}&format={serialisation_format}
+        parameters:
+            identifier_type:
+                type: jinja
+                jinja:
+                    data_type: string
+                description: Whether using UniverseId for a predefined list of items, or MstarId for single item requests.
+            identifier:
+                type: jinja
+                jinja:
+                    data_type: string
+                description: The unique identifier from Morningstar which identifies the item/s required to be included in the returned dataset.
+            access_code:
+                type: jinja
+                jinja:
+                    data_type: string
+                description: Security token obtained from Morningstar's authentiation endpoint.
+            serialisation_format:
+                type: jinja
+                jinja:
+                    data_type: string
+                description: Supports either json, or csv.
+    validation:
+        on_no_records: fail
+        type: none
+    change_detection:
+        type: none
+target:
+    data_conection:
+        name: Stifel-Stifel
+    type: api
+    api:
+        end_point: upload-table
+        file_format: csv
+        parameters:
+            table_name: StifelBenchmarkInfoTable
+    validation:
+        on_no_records: skip
+        type: none
+    load_pattern: keepAll
+    keepAll:
+        comment: All data is loaded, and an "upsert" is performed by the target API endpoint.
+data_items:
+    - source:
+          type: column
+          column: UniverseID
+      target:
+          type: column
+          column: UniverseID
+          data_type: numeric
+          description: ""
+    - source:
+          type: column
+          column: PrimaryID
+      target:
+          type: column
+          column: PrimaryID
+          data_type: string
+          description: ""
+    - source:
+          type: column
+          column: SecondaryID
+      target:
+          type: column
+          column: SecondaryID
+          data_type: string
+          description: ""
+    - source:
+          type: column
+          column: BenchmarkID
+      target:
+          type: column
+          column: BenchmarkID
+          data_type: string
+          description: ""
+    - source:
+          type: column
+          column: BenchmarkName
+      target:
+          type: column
+          column: BenchmarkName
+          data_type: string
+          description: ""
+    - source:
+          type: column
+          column: BenchmarkWeight
+      target:
+          type: column
+          column: BenchmarkWeight
+          data_type: numeric
+          description: ""

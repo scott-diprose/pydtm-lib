@@ -1,0 +1,69 @@
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: HSTG
+    description: Persistant Staging Area for the Data Vault / Enterprise Data Warehouse.
+data:
+    type: data_files
+    data_files:
+        expected_file_format: json
+connection:
+    type: api
+    api:
+        base_url: DRIVER={ODBC Driver 13 for SQL Server};Server=(local);Database=DEV_150_HSTG;Trusted_Connection=yes;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: mapping
+metadata:
+    name: table_1_to_table_2
+    description: "Test pipeline from one sample table to another."
+    enabled: true
+source:
+    data_conection:
+        name: Stifel-ClientLoad
+    type: data_file
+    data_file:
+        file_name: BenchmarkMappingTable*.xlsx
+        pattern_matching: Glob
+        file_format: xslx
+    validation:
+        on_no_records: fail
+        type: json_schema
+        json_schema:
+            file_name: BenchmarkMappingTable_schema.json
+    change_detection:
+        type: none
+target:
+    data_conection:
+        name: Stifel-Stifel
+    type: api
+    api:
+        end_point: upload-table
+        file_format: csv
+        parameters:
+            table_name: StifelBenchmarkInfoTable
+    validation:
+        on_no_records: skip
+        type: none
+    load_pattern: keepAll
+    keepAll:
+        comment: All data is loaded, and an "upsert" is performed by the target API endpoint.
+data_items:
+    - source:
+          type: column
+          column: SourceID
+      target:
+          type: column
+          column: SourceID
+          data_type: string
+          description: ""
+    - source:
+          type: column
+          column: BenchmarkID
+      target:
+          type: column
+          column: BenchmarkID
+          data_type: string
+          description: ""

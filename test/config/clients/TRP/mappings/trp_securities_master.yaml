@@ -1,0 +1,35 @@
+---
+api_version: v0.beta2
+kind: mapping
+metadata:
+    name: trp_securities_master
+    description: ""
+    enabled: true
+source:
+    data_conection:
+        name: local_data
+    type: data_file
+    data_file:
+        file_name: BenchmarkList*.xlsx
+        pattern_matching: Glob
+        file_format: xslx
+        on_no_records: fail
+target:
+    type: pipeline
+data_items:
+    - source:
+          type: column
+          column: MStar ID
+      target:
+          type: column
+          column: MStarID
+          data_type: text
+          description: ""
+    - source:
+          type: column
+          column: DS Code / Mneumonic
+      target:
+          type: column
+          column: DSCode
+          data_type: text
+          description: ""
