@@ -1,16 +1,19 @@
 # M4DM (Metadata for Data Meaning)
 
-> pym4dm-lib
-
-A metadata library which captures the meaning of individual data elements. Where an
-element originated from or how it was transformed/derived from originating data.
-Maintaing data linage accross all maintained data stores delivers the most potential
-to provide understanding and meaning to data.
-
-If data linage is also maintained in a computer readable format. This then provides
-the potential for code generation.
-
 WASM & PyPI pkg
+> m4dm-py
+
+A structured schema of metadata which captures the meaning of individual data elements.
+Where an element originated from or how it was transformed/derived from originating
+data. Maintaing data linage accross all maintained data stores delivers the most
+potential to provide understanding and meaning to data. Especially when combined with
+documentation on the various subject areas to which the data belongs.
+
+If data linage, mappings and transformations are also maintained in a computer readable
+format. This then provides potential for code generation.
+
+Complimented by cataloging the purpose/intent of available data marts, reporting artifacts,
+and data interfaces between systems.
 
 1. schemas and validation
 2. protocol matching - identify the intended schema of a loaded json document
